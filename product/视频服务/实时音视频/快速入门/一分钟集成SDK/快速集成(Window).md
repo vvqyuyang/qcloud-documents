@@ -12,7 +12,7 @@
 
 [](id:step1)
 ### 步骤1：下载  Windows SDK 
-[下载 SDK](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开文件，包含以下部分：
+[下载 SDK](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开文件，包含以下部分：
 
 | 目录名  | 说明                                   |
 | ------- | -------------------------------------- |
@@ -25,14 +25,13 @@
 [](id:step2)
 ### 步骤2：新建工程
 打开 Visual Studio，新建名为`TRTCCSharpDemo`的 Winform 应用程序。
- ![](https://main.qcloudimg.com/raw/b0f7a80d2f86e73b4cc277bd05c73fd9.png)
 
 [](id:step3)
 ### 步骤3：拷贝文件
 将解压后的 SDK 文件夹拷贝至 `TRTCCSharpDemo.csproj` 所在目录。
 >?当只需要 C# SDK时，可以将 SDK 路径下的 CPlusPlus 目录删除。
 
-![](https://main.qcloudimg.com/raw/dbd90fce988853c26a832930cef2e9a6.png)
+
 
 [](id:step4)
 ### 步骤4：修改工程配置
@@ -40,9 +39,9 @@
 1. 在 Visual Studio 的【生成】目录下找到【配置管理器】并打开。[](id:step4_1_2)
 2. 在【活动解决方案平台】下拉框中选择【新建】，弹出【新建解决方案平台】对话框。[](id:step4_1_3)
 3. 输入或选择新平台，单击【确定】。
- ![](https://main.qcloudimg.com/raw/75f07143f2c6a83a4d22e3f95f8f3864.png)
+
 4. 根据实际需求重复 [步骤2](#step4_1_2) - [步骤3](#step4_1_3)  新建需要支持的解决方案平台。
- ![](https://main.qcloudimg.com/raw/e7d906cbc18d32848a25cce38f50d20c.png)
+
 5. 打开 TRTCCSharpDemo 项目所在的文件夹，并用文本编辑器编辑`TRTCCSharpDemo.csproj`文件。
 6. 在 `TRTCCSharpDemo.csproj` 文件中的标签 `<itemGroup>`下添加以下内容：
 ```
@@ -58,7 +57,6 @@
   </Reference>
 ```
 
-![](https://main.qcloudimg.com/raw/a76052df7be5fb54cfbcdedc7a5afc58.png)
 
 #### 步骤4.2：添加 copy 命令
 1. 打开 TRTCCSharpDemo 属性页，选择【解决方案资源管理器】>【TRTCCSharpDemo 工程的右键菜单】>【属性】。
@@ -72,17 +70,15 @@ if $(PlatformName)==x86 (
 copy /Y "$(ProjectDir)SDK\CSharp\!Platform!\lib\*.dll" "$(ProjectDir)$(OutDir)"
 ENDLOCAL
 ```
-![](https://main.qcloudimg.com/raw/1939c8a6702da356fe58d9945c40a60c.png)
+
 
 #### 步骤4.3：修改调试环境
 打开 TRTCDemo 属性页，选择【生成】，将【平台(M)】与顶部菜单栏中的解决方案平台设置为一致，如下图所示：
-![](https://main.qcloudimg.com/raw/23462af7ca105e5f78c5b5cbd3242063.png)
 
 
 [](id:step5)
 ### 步骤5：打印 SDK 版本号
 1. 在 Form1.cs 的设计器中添加一个 label 控件，如下图所示：
- ![](https://main.qcloudimg.com/raw/fec574b76a4250a3e948816b7cc1728d.png)
 2. 打开 Form1.cs 代码文件，添加以下代码：
 ```c#
 	using System.Windows.Forms;
@@ -115,7 +111,7 @@ ENDLOCAL
 
 [](id:using_cpp_step1)
 ### 步骤1：下载  SDK
-[下载 SDK](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开，包含以下几个部分：
+[下载 SDK](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开，包含以下几个部分：
 
 | 目录名  | 说明                                   |
 | ------- | -------------------------------------- |
@@ -126,10 +122,10 @@ ENDLOCAL
 [](id:using_cpp_step2)
 ### 步骤2：新建工程
 打开 Visual Studio，新建一个名字叫 TRTCDemo 的 MFC 应用程序，如下图所示：
-![](https://main.qcloudimg.com/raw/645623e01a65858e23123af52ec15bc2.png)
+
 
 为了便于介绍如何快速集成，在向导的**应用程序类型**页面，我们选择比较简单的**基于对话框**类型，如下图所示：
-![](https://main.qcloudimg.com/raw/b561d5d514266a5ab222f4e398ebbc11.png)
+
 
 其他的向导配置，请选择默认的配置即可。
 
@@ -137,7 +133,7 @@ ENDLOCAL
 [](id:using_cpp_step3)
 ### 步骤3：拷贝文件
 将解压后的 LiteAVSDK 文件夹拷贝到 TRTCDemo.vcxproj 所在目录下，如下图所示：
-![](https://main.qcloudimg.com/raw/a5bfd73b6a7d805f6bbb6e0155687e0f.png)
+
 
 
 [](id:using_cpp_step4)
@@ -146,16 +142,16 @@ ENDLOCAL
 
 1.  **添加包含目录：**
 在【C/C++】>【常规】>【附件包含目录】，添加 SDK 头文件目录 `$(ProjectDir)LiteAVSDK\include` 和 `$(ProjectDir)LiteAVSDK\include\TRTC`，如下图所示：
-![](https://main.qcloudimg.com/raw/b4bf2ccdfcc498c96c7eb28a4429bda2.png)
+
 2. **添加库目录：**
 在【链接器】>【常规】>【附加库目录】，添加 SDK 库目录 `$(ProjectDir)LiteAVSDK\lib`，如下图所示：
-  ![](https://main.qcloudimg.com/raw/55ec832996c5355acc9215f67351fed2.png)
+
 3. **添加库文件：**
 在【链接器】>【输入】>【附加依赖项】，添加 SDK 库文件 `liteav.lib`，如下图所示：
-  ![](https://main.qcloudimg.com/raw/2d78d5e833668ac009f5d2c04f9ec7aa.png)
+
 4. **添加 copy 命令：**
 在【生成事件】>【后期生成事件】>【命令行】，添加拷贝命令 `copy /Y "$(ProjectDir)LiteAVSDK\lib\\\*.dll" "\$(OutDir)"`，能够在编译完成后，自动将 SDK 的 .dll 文件拷贝到程序的运行目录下，如下图所示：
-![](https://main.qcloudimg.com/raw/f6d626301b74d85dd6e7eb8577648988.png)
+
 
 
 [](id:using_cpp_step5)
@@ -193,7 +189,7 @@ System.IO.FileNotFoundException:“未能加载文件或程序集“ManageLiteAV
 ```
 
 - 由于 Windows 不同版本可能存在兼容性问题，目前在 C# SDK 中新增了解决兼容性问题的 dll 文件，文件清单如下图所示。
-![](https://main.qcloudimg.com/raw/1467310c3f5b2ab7271376902d23a2be.png)
+
 - 若出现以下错误，请按照前面的工程配置，检查 SDK 头文件的目录是否正确添加。
 ```
 fatal error C1083: 无法打开包括文件: “TRTCCloud.h”: No such file or directory
