@@ -3,45 +3,40 @@
 
 ## 集成说明
 
-[](id:step1)
+<span id="step1"></span>
 ### 步骤1：集成 TRTCPrivilegedTask 库  
 
 SDK 需要使用 [TRTCPrivilegedTask](https://liteavsdk-1252463788.cos.ap-guangzhou.myqcloud.com/TRTCPrivilegedTask/TRTCPrivilegedTask.tar.bz2) 库来获取 root 权限，从而将虚拟声卡插件 TRTCAudioPlugin.driver 安装至系统目录 `/Library/Audio/Plug-Ins/HAL` 。
 
-<dx-tabs>
-::: 使用CocoaPods集成  
+#### 使用CocoaPods集成  
 1. 打开您当前项目根目录下的 `Podfile` 文件，添加下面的内容：
-<dx-codeblock>
-::: ruby ruby
-platform :osx, '10.10'	
+```
+ platform :osx, '10.10'	
 
-target 'Your Target' do
+ target 'Your Target' do
     pod 'TRTCPrivilegedTask', :podspec => 'https://pod-1252463788.cos.ap-guangzhou.myqcloud.com/liteavsdkspec/TRTCPrivilegedTask.podspec'
-end
-:::
-</dx-codeblock>
+ end
+```
 2. 执行 `pod install` 命令安装 **TRTCPrivilegedTask** 库。
 
 >?
 >- 如果项目根目录下没有 `Podfile` 文件，请先执行 `pod init` 命令新建文件再添加以下内容。
 >-  CocoaPods 的安装方法，请参见  [CocoaPods 官网安装说明](https://guides.cocoapods.org/using/getting-started.html)。
-:::
-::: 手动集成
+
+#### 手动集成
 1. 下载 [TRTCPrivilegedTask](https://liteavsdk-1252463788.cos.ap-guangzhou.myqcloud.com/TRTCPrivilegedTask/TRTCPrivilegedTask.tar.bz2) 库。
 2. 打开您的 Xcode 工程项目，导入解压后的文件 libPrivilegedTask.a 到您的工程。
 3. 选择要运行的 target，选中 Build Phases 项，展开Link Binary with Libraries 项，单击底下的【+】，添加依赖库 `libPrivilegedTask.a`。  
 ![libPrivilegedTask.a](https://main.qcloudimg.com/raw/cc5b3365e72cee80cda7f0db0a4e1b62.png)  
-:::
-</dx-tabs> 
 
 
-[](id:step2)
+<span id="step2"></span>
 ### 步骤2：取消 App Sandbox 功能  
 在 App 的 entitlements 描述文件中，删除 **App Sandbox** 条目。  
 ![Sandbox](https://main.qcloudimg.com/raw/98fed5571040f24c2891f4b87ddce15e.png)  
 
 
-[](id:step3)
+<span id="step3"></span>
 ### 步骤3：虚拟声卡插件打包  
 在 [集成 TRTCPrivilegedTask 库](#step1) 和 [取消 App Sandbox 功能](#step2) 后，首次使用系统音频录制功能时，SDK 会从网络下载虚拟声卡插件并安装。如果想加速这个过程，可以将放置在 `TXLiteAVSDK_TRTC_Mac.framework` 的 PlugIns 目录下的虚拟声卡插件 `TRTCAudioPlugin.driver` 打包至 App Bundle 的 Resources 目录。如下图：  
 ![打包插件](https://main.qcloudimg.com/raw/b04b805d4848f2ecd6fd7dcc83176a9e.png)
@@ -49,7 +44,7 @@ end
 ![打包插件2](https://main.qcloudimg.com/raw/05fb5c6ec4dba74c3b5fb880ed28033e.png)  
 
 
-[](id:step4)
+<span id="step4"></span>
 ### 步骤4：开始系统声音采集  
 调用 [startSystemAudioLoopback](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__ios.html#a2979e32c019708dcc9209bb6d2db9486) 接口开始系统声音采集，并将其混入上行音频流中，接口执行完成会通过 [onSystemAudioLoopbackError](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloudDelegate__ios.html#a8644f5136138d13ffa8e0ea68f5c3676) 回调成功或失败的结果。
 ```Objective-C
@@ -58,13 +53,12 @@ TRTCCloud *trtcCloud = [TRTCCloud sharedInstance];
 [trtcCloud startSystemAudioLoopback];
 ```
 
->! 集成 TRTCPrivilegedTask 库和取消 App Sandbox 功能后，首次调用 startSystemAudioLoopback 会获取 root 权限。如下图：  
->![权限请求框](https://main.qcloudimg.com/raw/c6507054c395f9372246bfc3498f5086.png)  
+>! 集成 TRTCPrivilegedTask 库和取消 App Sandbox 功能后，首次调用 startSystemAudioLoopback 会获取 root 权限。如下图：    
 >在用户单击【好】后，开始自动安装虚拟声卡插件。
 
 
 
-[](id:step5)
+<span id="step5"></span>
 
 ### 步骤5：停止系统声音采集 
 
@@ -75,7 +69,7 @@ TRTCCloud *trtcCloud = [TRTCCloud sharedInstance];
 [trtcCloud stopSystemAudioLoopback];
 ```
 
-[](id:step6)
+<span id="step6"></span>
 ### 步骤6：设置系统声音采集音量
 
 调用 [setSystemAudioLoopbackVolume](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__ios.html#a2979e32c019708dcc9209bb6d2db9486) 接口设置系统声音的采集音量。
@@ -92,15 +86,14 @@ TRTCCloud *trtcCloud = [TRTCCloud sharedInstance];
 > ? 除上述方案外，也可以手动安装虚拟声卡插件来集成该功能：
 > 1. 将放置在 `TXLiteAVSDK_TRTC_Mac.framework` 的 PlugIns 目录下的 `TRTCAudioPlugin.driver` 拷贝至系统目录  `/Library/Audio/Plug-Ins/HAL`。
 > 2. 重启系统的音频服务。 
-><dx-codeblock>
-::: 重启系统的音频服务 bash
+
+#### 重启系统的音频服务 bash
+```
  sudo cp -R TXLiteAVSDK_TRTC_Mac.framework/PlugIns/TRTCAudioPlugin.driver /Library/Audio/Plug-Ins/HAL  
  sudo kill -9 `ps ax|grep 'coreaudio[a-z]' |awk '{print $1}'`
-:::
-</dx-codeblock>
+```
+<span id="note"></span>
 
-
-[](id:note)
 ## 注意事项
 - App Sandbox 功能取消后，App 内获取到的用户路径会发生变化。  
 通过 NSSearchPathForDirectoriesInDomains 等系统方法获取到的 ` ~/Documents`、 `~/Library` 等目录会从沙盒目录切换成用户目录 `/Users/用户名/Documents`、 `/Users/用户名/Library`。
