@@ -6,10 +6,10 @@ TRTCVoiceRoom 是基于腾讯云实时音视频（TRTC）和即时通信 IM 服�
 - 观众可以申请上麦，变成麦上主播，可以和其他人语音互动，也可以随时下麦成为普通的观众。
 - 支持发送各种文本消息和自定义消息，自定义消息可用于实现弹幕、点赞和礼物等。
 
-TRTCVoiceRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [语音聊天室（Android）](https://cloud.tencent.com/document/product/647/45737)。
+TRTCVoiceRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [语音聊天室（Android）](https://intl.cloud.tencent.com/document/product/647/37286)。
 
-- TRTC SDK：使用 [TRTC SDK](https://cloud.tencent.com/document/product/647) 作为低延时语音聊天组件。
-- IM SDK：使用 [IM SDK](https://cloud.tencent.com/document/product/269) 的 AVChatroom 实现聊天室的功能，同时，通过 IM 的属性接口来存储麦位表等房间信息，邀请信令可以用于上麦申请/抱麦申请。
+- TRTC SDK：使用 [TRTC SDK](https://intl.cloud.tencent.com/document/product/647) 作为低延时语音聊天组件。
+- IM SDK：使用 [IM SDK](https://intl.cloud.tencent.com/document/product/1047) 的 AVChatroom 实现聊天室的功能，同时，通过 IM 的属性接口来存储麦位表等房间信息，邀请信令可以用于上麦申请/抱麦申请。
 
 [](id:TRTCVoiceRoom)
 ## TRTCVoiceRoom API 概览
@@ -147,7 +147,7 @@ TRTCVoiceRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，�
 
 ### sharedInstance
 
-获取 [TRTCVoiceRoom](https://cloud.tencent.com/document/product/647/45737) 单例对象。
+获取 [TRTCVoiceRoom](https://intl.cloud.tencent.com/document/product/647/37286) 单例对象。
 
 ```java
  public static synchronized TRTCVoiceRoom sharedInstance(Context context);
@@ -163,7 +163,7 @@ TRTCVoiceRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，�
 
 ### destroySharedInstance
 
-销毁 [TRTCVoiceRoom](https://cloud.tencent.com/document/product/647/45737) 单例对象。
+销毁 [TRTCVoiceRoom](https://intl.cloud.tencent.com/document/product/647/37286) 单例对象。
 
 >?销毁实例后，外部缓存的 TRTCVoiceRoom 实例无法再使用，需要重新调用 [sharedInstance](#sharedInstance) 获取新实例。
 
@@ -173,7 +173,7 @@ public static void destroySharedInstance();
 
 ### setDelegate
 
-[TRTCVoiceRoom](https://cloud.tencent.com/document/product/647/45737) 事件回调，您可以通过 TRTCVoiceRoomDelegate 获得 [TRTCVoiceRoom](https://cloud.tencent.com/document/product/647/45737) 的各种状态通知。
+[TRTCVoiceRoom](https://intl.cloud.tencent.com/document/product/647/37286) 事件回调，您可以通过 TRTCVoiceRoomDelegate 获得 [TRTCVoiceRoom](https://intl.cloud.tencent.com/document/product/647/37286) 的各种状态通知。
 
 ```java
 public abstract void setDelegate(TRTCVoiceRoomDelegate delegate);
@@ -213,7 +213,7 @@ TRTCVoiceRoomCallback.ActionCallback callback);
 | -------- | -------------- | ------------------------------------------------------------ |
 | sdkAppId | int            | 您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userId   | String         | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
-| userSig  | String         | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
+| userSig  | String         | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。 |
 | callback | ActionCallback | 登录回调，成功时 code 为0。                                  |
 
    
