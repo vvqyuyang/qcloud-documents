@@ -3,9 +3,9 @@ TRTCMeeting 是基于腾讯云实时音视频（TRTC）和即时通信 IM 服务
 - 参会人员之间进行屏幕分享。
 - 支持发送各种文本消息和自定义消息。
 
-TRTCMeeting 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [多人视频会议(Android)](https://cloud.tencent.com/document/product/647/45667)。
-- TRTC SDK：使用 [TRTC SDK](https://cloud.tencent.com/document/product/647) 作为低延时视频会议组件。
-- IM SDK：使用 [IM SDK](https://cloud.tencent.com/document/product/269) 的 MeetingRoom 实现会议中聊天室的功能。
+TRTCMeeting 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [多人视频会议(Android)](https://intl.cloud.tencent.com/document/product/647/37283)。
+- TRTC SDK：使用 [TRTC SDK](https://intl.cloud.tencent.com/document/product/647) 作为低延时视频会议组件。
+- IM SDK：使用 [IM SDK](https://intl.cloud.tencent.com/document/product/1047) 的 MeetingRoom 实现会议中聊天室的功能。
 
 
 <h2 id="TRTCMeeting">TRTCMeeting API 概览</h2>
@@ -148,10 +148,10 @@ TRTCMeeting 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具�
 
 ## SDK 基础函数
 
-[](id:sharedInstance)
+<span id="sharedInstance"></span>
 ### sharedInstance
 
-获取 [TRTCMeeting](https://cloud.tencent.com/document/product/647/45667) 单例对象。
+获取 [TRTCMeeting](https://intl.cloud.tencent.com/document/product/647/37283) 单例对象。
 ```java
  public static synchronized TRTCMeeting sharedInstance(Context context);
 ```
@@ -165,7 +165,7 @@ TRTCMeeting 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具�
 
 ### destroySharedInstance
 
-销毁 [TRTCMeeting](https://cloud.tencent.com/document/product/647/45667) 单例对象。
+销毁 [TRTCMeeting](https://intl.cloud.tencent.com/document/product/647/37283) 单例对象。
 >?销毁实例后，外部缓存的 TRTCMeeting 实例无法再使用，需要重新调用 [sharedInstance](#sharedInstance) 获取新实例。
 
 ```java
@@ -174,7 +174,7 @@ public static void destroySharedInstance();
 
 ### setDelegate
 
-[TRTCMeeting](https://cloud.tencent.com/document/product/647/45667) 事件回调，您可以通过 TRTCMeetingDelegate 获得 [TRTCMeeting](https://cloud.tencent.com/document/product/647/45667) 的各种状态通知。
+[TRTCMeeting](https://intl.cloud.tencent.com/document/product/647/37283) 事件回调，您可以通过 TRTCMeetingDelegate 获得 [TRTCMeeting](https://intl.cloud.tencent.com/document/product/647/37283) 的各种状态通知。
 ```java
 public abstract void setDelegate(TRTCMeetingDelegate delegate);
 ```
@@ -208,7 +208,7 @@ public abstract void login(int sdkAppId,
 |-----|-----|-----|
 | sdkAppId | int |  您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userId | String | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
-| userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
+| userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。 |
 | callback | ActionCallback | 登录回调，成功时 code 为0。 |
 
 
@@ -390,7 +390,7 @@ public abstract void setRemoteViewFillMode(String userId, int fillMode);
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
 | userId | String | 用户 ID。|
-| fillMode | int  | 填充或适应模式，默认值：填充（FILL） 详情请参见 [TRTC SDK](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__android.html#ab4197bc2efb62b471b49f926bab9352f) |
+| fillMode | int  | 填充或适应模式，默认值：填充（FILL） 详情请参见 [TRTC SDK](https://liteav.sdk.qcloud.com/doc/api/zh-cngroup__TRTCCloud__android.html#ab4197bc2efb62b471b49f926bab9352f) |
    
 
 
@@ -973,8 +973,3 @@ void onScreenCaptureStopped(int reason);
 | 参数   | 类型 | 含义                                               |
 | ------ | ---- | -------------------------------------------------- |
 | reason | int  | 停止原因，0：用户主动停止；1：被其他应用抢占导致停止 |
-
-
-
-
-
