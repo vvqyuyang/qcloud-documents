@@ -4,9 +4,9 @@ TRTCLiveRoom 是基于腾讯云实时音视频（TRTC）和即时通信 IM 服�
 - 两个不同房间的主播 PK 互动。
 - 支持发送各种文本消息和自定义消息，自定义消息可用于实现弹幕、点赞和礼物。
 
-TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [视频连麦直播（Android）](https://cloud.tencent.com/document/product/647/43182)。
-- TRTC SDK：使用 [TRTC SDK](https://cloud.tencent.com/document/product/647) 作为低延时直播组件。
-- IM SDK：使用 [IM SDK](https://cloud.tencent.com/document/product/269) 的 AVChatroom 实现直播聊天室的功能，同时，通过 IM 消息串联主播间的连麦流程。
+TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [视频连麦直播（Android）](https://intl.cloud.tencent.com/document/product/647/36061)。
+- TRTC SDK：使用 [TRTC SDK](https://intl.cloud.tencent.com/document/product/647) 作为低延时直播组件。
+- IM SDK：使用 [IM SDK](https://intl.cloud.tencent.com/document/product/1047) 的 AVChatroom 实现直播聊天室的功能，同时，通过 IM 消息串联主播间的连麦流程。
 
 [](id:TRTCLiveRoom)
 ## TRTCLiveRoom API 概览
@@ -76,13 +76,13 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 
 | API | 描述 |
 |-----|-----|
-| [getAudioEffectManager](#getaudioeffectmanager) | 获取背景音乐音效管理对象 [TXAudioEffectManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TXAudioEffectManager__android.html#interfacecom_1_1tencent_1_1liteav_1_1audio_1_1TXAudioEffectManager)。|
+| [getAudioEffectManager](#getaudioeffectmanager) | 获取背景音乐音效管理对象 [TXAudioEffectManager](#trtcaudioeffectmanagerapi)。|
 
 ### 美颜滤镜相关接口函数
 
 | API | 描述 |
 |-----|-----|
-| [getBeautyManager](#getbeautymanager) | 获取美颜管理对象 [TXBeautyManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TXBeautyManager__android.html#classcom_1_1tencent_1_1liteav_1_1beauty_1_1TXBeautyManager)。|
+| [getBeautyManager](#getbeautymanager) | 获取美颜管理对象 [TXBeautyManager](http://doc.qcloudtrtc.com/group__TXBeautyManager__android.html#classcom_1_1tencent_1_1liteav_1_1beauty_1_1TXBeautyManager)。|
 
 ### 消息发送相关接口函数
 
@@ -149,7 +149,7 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 [](id:sharedInstance)
 ### sharedInstance
 
-获取 [TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43182) 单例对象。
+获取 [TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36061) 单例对象。
 ```java
  public static synchronized TRTCLiveRoom sharedInstance(Context context);
 ```
@@ -163,7 +163,7 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 
 ### destroySharedInstance
 
-销毁 [TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43182) 单例对象。
+销毁 [TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36061) 单例对象。
 >?销毁实例后，外部缓存的 TRTCLiveRoom 实例无法再使用，需要重新调用 [sharedInstance](#sharedInstance) 获取新实例。
 
 ```java
@@ -172,7 +172,7 @@ public static void destroySharedInstance();
 
 ### setDelegate
 
-[TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43182) 事件回调，您可以通过 TRTCLiveRoomDelegate 获得 [TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43182) 的各种状态通知。
+[TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36061) 事件回调，您可以通过 TRTCLiveRoomDelegate 获得 [TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36061) 的各种状态通知。
 ```java
 public abstract void setDelegate(TRTCLiveRoomDelegate delegate);
 ```
@@ -196,15 +196,12 @@ public abstract void setDelegateHandler(Handler handler);
 ### login
 
 登录。
-
-<dx-codeblock>
-::: java java
+```java
 public abstract void login(int sdkAppId,
  String userId, String userSig,
  TRTCLiveRoomDef.TRTCLiveRoomConfig config, 
  TRTCLiveRoomCallback.ActionCallback callback);
-:::
-</dx-codeblock>
+```
 
 参数如下表所示：
 
@@ -212,7 +209,7 @@ public abstract void login(int sdkAppId,
 |-----|-----|-----|
 | sdkAppId | int |  您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userId | String | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
-| userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
+| userSig | String | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。 |
 | config | TRTCLiveRoomConfig | 全局配置信息，请在登录时初始化，登录之后不可变更。<ul style="margin:0;"><li>useCDNFirst 属性：用于设置观众观看方式。true 表示普通观众通过 CDN 观看，计费便宜但延时较高。false 表示普通观众通过低延时观看，计费价格介于 CDN 和连麦之间，但延迟可控制在1s以内。</li><li>CDNPlayDomain 属性：在 useCDNFirst 设置为 true 时才会生效，用于指定 CDN 观看的播放域名，您可以登录直播控制台 >【<a href="https://console.cloud.tencent.com/live/domainmanage">域名管理</a>】页面中进行设置。</li></ul> |
 | callback | ActionCallback | 登录回调，成功时 code 为0。 |
 
@@ -671,7 +668,7 @@ public abstract void muteAllRemoteAudio(boolean mute);
 ## 背景音乐音效相关接口函数
 ### getAudioEffectManager
 
-获取背景音乐音效管理对象 [TXAudioEffectManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__android.html#a3646dad993287c3a1a38a5bc0e6e33aa)。
+获取背景音乐音效管理对象 [TXAudioEffectManager](http://doc.qcloudtrtc.com/group__TXAudioEffectManager__android.html#interfacecom_1_1tencent_1_1liteav_1_1audio_1_1TXAudioEffectManager)。
 ```java
 public abstract TXAudioEffectManager getAudioEffectManager();
 ```
@@ -680,7 +677,7 @@ public abstract TXAudioEffectManager getAudioEffectManager();
 ## 美颜滤镜相关接口函数
 ### getBeautyManager
 
-获取美颜管理对象 [TXBeautyManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TXBeautyManager__android.html#classcom_1_1tencent_1_1liteav_1_1beauty_1_1TXBeautyManager)。
+获取美颜管理对象 [TXBeautyManager](http://doc.qcloudtrtc.com/group__TXBeautyManager__android.html#classcom_1_1tencent_1_1liteav_1_1beauty_1_1TXBeautyManager)。
 ```java
 public abstract TXBeautyManager getBeautyManager();
 ```
@@ -1083,7 +1080,7 @@ void setReverbType(int reverbType);
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| reverbType | int | 混响类型，详情请参见 `TRTCCloudDef` 中的 [TRTC_REVERB_TYPE](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloudDef__android.html#a60ecba31f49f70780e623d24bcfa1a7d) 定义。 |
+| reverbType | int | 混响类型，详情请参见 `TRTCCloudDef` 中的 [TRTC_REVERB_TYPE](http://doc.qcloudtrtc.com/group__TRTCCloudDef__android.html#a60ecba31f49f70780e623d24bcfa1a7d) 定义。 |
 
    
 
@@ -1098,7 +1095,7 @@ void setVoiceChangerType(int type);
 
 | 参数 | 类型 | 含义 |
 |-----|-----|-----|
-| type | int | 混响类型，详情请参见 `TRTCCloudDef` 中的 [TRTC_VOICE_CHANGER_TYPE](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloudDef__android.html#a899e72b3e4a16288e6c2edfd779e3beb) 定义。 |
+| type | int | 混响类型，详情请参见 `TRTCCloudDef` 中的 [TRTC_VOICE_CHANGER_TYPE](http://doc.qcloudtrtc.com/group__TRTCCloudDef__android.html#a899e72b3e4a16288e6c2edfd779e3beb) 定义。 |
 
    
 
