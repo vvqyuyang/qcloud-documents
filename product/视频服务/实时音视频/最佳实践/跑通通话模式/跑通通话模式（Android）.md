@@ -1,6 +1,6 @@
 ## 适用场景
-TRTC 支持四种不同的进房模式，其中视频通话（VideoCall）和语音通话（VoiceCall）统称为通话模式，视频互动直播（Live）和语音互动直播（VoiceChatRoom）统称为 [直播模式](https://cloud.tencent.com/document/product/647/35428)。
-通话模式下的 TRTC，支持单个房间最多300人同时在线，支持最多50人同时发言。适合1对1视频通话、300人视频会议、在线问诊、远程面试、视频客服、在线狼人杀等应用场景。
+TRTC 支持四种不同的进房模式，其中视频通话（VideoCall）和语音通话（VoiceCall）统称为通话模式，视频互动直播（Live）和语音互动直播（VoiceChatRoom）统称为 [直播模式](https://intl.cloud.tencent.com/document/product/647/35108)。
+通话模式下的 TRTC，支持单个房间最多300人同时在线，支持最多30人同时发言。适合1对1视频通话、300人视频会议、在线问诊、远程面试、视频客服、在线狼人杀等应用场景。
 
 ## 原理解析
 TRTC 云服务由两种不同类型的服务器节点组成，分别是“接口机”和“代理机”：
@@ -9,12 +9,12 @@ TRTC 云服务由两种不同类型的服务器节点组成，分别是“接口
 - **代理机**
 该类节点都采用普通的线路和性能一般的机器，善于处理高并发的拉流观看需求，单位时长计费较低。
 
-在通话模式下，TRTC 房间中的所有用户都会被分配到接口机上，相当于每个用户都是“主播”，每个用户随时都可以发言（最高的上行并发限制为50路），因此适合在线会议等场景，但单个房间的人数限制为300人。
-![](https://main.qcloudimg.com/raw/b88a624c0bd67d5d58db331b3d64c51c.gif)
+在通话模式下，TRTC 房间中的所有用户都会被分配到接口机上，相当于每个用户都是“主播”，每个用户随时都可以发言（最高的上行并发限制为30路），因此适合在线会议等场景，但单个房间的人数限制为300人。
+
 
 ## 示例代码
 您可以登录 [Github](https://github.com/tencentyun/TRTCSDK/tree/master/Android/TRTCSimpleDemo) 获取本文档相关的示例代码。
-![](https://main.qcloudimg.com/raw/0f4db0e8f6046f69bdef9b041f3a2238.png)
+![](https://main.qcloudimg.com/raw/3ef83a68399c22ba0c1fbb079e3dfaf3.png)
 
 >?如果访问 Github 较慢，您也可以直接下载 [TXLiteAVSDK_TRTC_Android_latest.zip](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Android_latest.zip)。
 
@@ -46,7 +46,7 @@ dependencies {
  如果您的网络连接 jcenter 没有问题，SDK 会自动下载集成到工程中。
 
 #### 方式二：下载 ZIP 包手动集成
-您可以直接下载 [ZIP 压缩包](https://cloud.tencent.com/document/product/647/32689)，并参考 [快速集成(Android)](https://cloud.tencent.com/document/product/647/32175#.E6.96.B9.E6.B3.95.E4.BA.8C.EF.BC.9A.E6.89.8B.E5.8A.A8.E4.B8.8B.E8.BD.BD.EF.BC.88aar.EF.BC.89) 将 SDK 集成到您的工程中。
+您可以直接下载 [ZIP 压缩包](https://intl.cloud.tencent.com/document/product/647/34615)，并参考 [快速集成(Android)](https://intl.cloud.tencent.com/document/product/647/35093) 将 SDK 集成到您的工程中。
 
 
 [](id:step2)
@@ -73,7 +73,7 @@ dependencies {
 [](id:step3)
 ### 步骤3：初始化 SDK 实例并监听事件回调
 
-1. 使用 [sharedInstance()](https://cloud.tencent.com/document/product/647/32267) 接口创建`TRTCCloud`实例。
+1. 使用 [sharedInstance()](https://intl.cloud.tencent.com/document/product/647/35125) 接口创建`TRTCCloud`实例。
 ```
 // 创建 trtcCloud 实例
 mTRTCCloud = TRTCCloud.sharedInstance(getApplicationContext());
@@ -105,7 +105,7 @@ public void onError(int errCode, String errMsg, Bundle extraInfo) {
 |---------|---------|---------|---------|
 | sdkAppId | 数字 | 应用 ID，您可以在 <a href="https://console.cloud.tencent.com/trtc/app">实时音视频控制台</a> 中查看 SDKAppID。|1400000123 | 
 | userId | 字符串 | 只允许包含大小写英文字母（a-z、A-Z）、数字（0-9）及下划线和连词符。 |test_user_001 | 
-| userSig | 字符串 | 基于 userId 可以计算出 userSig，计算方法请参见 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。| eJyrVareCeYrSy1SslI... |
+| userSig | 字符串 | 基于 userId 可以计算出 userSig，计算方法请参见 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。| eJyrVareCeYrSy1SslI... |
 | roomId | 数字 | 默认不支持字符串类型的房间号，字符串类型的房间号会影响进房速度。如果您确实需要支持字符串类型的房间号，可以 [提交工单](https://console.cloud.tencent.com/workorder/category) 联系我们。 | 29834 |
 
 >!TRTC 同一时间不支持两个相同的 userId 进入房间，否则会相互干扰。
@@ -138,7 +138,7 @@ public void onEnterRoom(long result) {
 }
 ```
 >! 
->- 如果进房失败，SDK 同时还会回调`onError`事件，并返回参数`errCode`（[错误码](https://cloud.tencent.com/document/product/647/38307)）、`errMsg`（错误原因）以及`extraInfo`（保留参数）。
+>- 如果进房失败，SDK 同时还会回调`onError`事件，并返回参数`errCode`（[错误码](https://intl.cloud.tencent.com/document/product/647/35130)）、`errMsg`（错误原因）以及`extraInfo`（保留参数）。
 >- 如果已在某一个房间中，则必须先调用`exitRoom()`退出当前房间，才能进入下一个房间。
 
 [](id:step6)
@@ -185,7 +185,7 @@ public void onUserVideoAvailable(String userId, boolean available) {
 3. 调用 [setLocalViewFillMode()](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__android.html#af36ab721c670e5871e5b21a41518b51d) 可以设定本地视频画面的显示模式：
  - Fill 模式表示填充，画面可能会被等比放大和裁剪，但不会有黑边。
  - Fit 模式表示适应，画面可能会等比缩小以完全显示其内容，可能会有黑边。
-4. 调用 [setVideoEncoderParam()](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__android.html#ae047d96922cb1c19135433fa7908e6ce) 接口可以设定本地视频的编码参数，该参数将决定房间里其他用户观看您的画面时所感受到的 [画面质量](https://cloud.tencent.com/document/product/647/32236)。
+4. 调用 [setVideoEncoderParam()](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__android.html#ae047d96922cb1c19135433fa7908e6ce) 接口可以设定本地视频的编码参数，该参数将决定房间里其他用户观看您的画面时所感受到的 [画面质量](https://intl.cloud.tencent.com/document/product/647/35153)。
 ```java
 //示例代码：发布本地的音视频流
 mTRTCCloud.setLocalViewFillMode(TRTC_VIDEO_RENDER_MODE_FIT);
@@ -209,5 +209,4 @@ public void onExitRoom(int reason) {
 ```
 
 >! 如果您的 App 中同时集成了多个音视频 SDK，请在收到`onExitRoom`回调后再启动其它音视频 SDK，否则可能会遇到硬件占用问题。
-
 
