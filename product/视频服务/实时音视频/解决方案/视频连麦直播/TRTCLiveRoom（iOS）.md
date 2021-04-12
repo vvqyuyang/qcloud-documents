@@ -5,10 +5,10 @@ TRTCLiveRoom 是基于腾讯云实时音视频（TRTC）和即时通信 IM 服�
 - 两个不同房间的主播 PK 互动。
 - 支持发送各种文本消息和自定义消息，自定义消息可用于实现弹幕、点赞和礼物。
 
-TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [视频连麦直播（iOS）](https://cloud.tencent.com/document/product/647/43181)。
+TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具体的实现过程请参见 [视频连麦直播（iOS）](https://intl.cloud.tencent.com/document/product/647/36060)。
 
-- TRTC SDK：使用 [TRTC SDK](https://cloud.tencent.com/document/product/647) 作为低延时直播组件。
-- IM SDK：使用 [IM SDK](https://cloud.tencent.com/document/product/269) 的 AVChatroom 实现直播聊天室的功能，同时，通过 IM 消息串联主播间的连麦流程。
+- TRTC SDK：使用 [TRTC SDK](https://intl.cloud.tencent.com/document/product/647) 作为低延时直播组件。
+- IM SDK：使用 [IM SDK](https://intl.cloud.tencent.com/document/product/1047) 的 AVChatroom 实现直播聊天室的功能，同时，通过 IM 消息串联主播间的连麦流程。
 
 
 
@@ -82,7 +82,7 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 
 | API                                   | 描述                                                         |
 | ------------------------------------- | ------------------------------------------------------------ |
-| [getBeautyManager](#getbeautymanager) | 获取美颜管理对象 [TXBeautyManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TXBeautyManager__ios.html#interfaceTXBeautyManager)。 |
+| [getBeautyManager](#getbeautymanager) | 获取美颜管理对象 [TXBeautyManager](http://doc.qcloudtrtc.com/group__TXBeautyManager__ios.html#interfaceTXBeautyManager)。 |
 
 ### 消息发送相关接口函数
 
@@ -150,7 +150,7 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 
 ### delegate
 
-[TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43181) 事件回调，您可以通过 TRTCLiveRoomDelegate 获得 [TRTCLiveRoom](https://cloud.tencent.com/document/product/647/43181) 的各种状态通知。
+[TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36060) 事件回调，您可以通过 TRTCLiveRoomDelegate 获得 [TRTCLiveRoom](https://intl.cloud.tencent.com/document/product/647/36060) 的各种状态通知。
 
 ```objc
 @property(nonatomic, weak)id<TRTCLiveRoomDelegate> delegate;
@@ -168,7 +168,7 @@ TRTCLiveRoom 是一个开源的 Class，依赖腾讯云的两个闭源 SDK，具
 /// - Parameters:
 ///   - sdkAppID: 您可以在实时音视频控制台 > 【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。
 ///   - userID: 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。
-///   - userSig:  腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。
+///   - userSig:  腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。
 ///   - config: 全局配置信息，请在登录时初始化，登录之后不可变更。 isAttachedTUIKit 项目中是否引入并使用TUIKit
 ///   - callback: 登录回调，成功时 code 为0。
 /// - Note:
@@ -187,7 +187,7 @@ NS_SWIFT_NAME(login(sdkAppID:userID:userSig:config:callback:));
 | -------- | ----------------------------------------- | ------------------------------------------------------------ |
 | sdkAppID | Int                                       | 您可以在实时音视频控制台 >【[应用管理](https://console.cloud.tencent.com/trtc/app)】> 应用信息中查看 SDKAppID。 |
 | userID   | String                                    | 当前用户的 ID，字符串类型，只允许包含英文字母（a-z 和 A-Z）、数字（0-9）、连词符（-）和下划线（\_）。 |
-| userSig  | String                                    | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://cloud.tencent.com/document/product/647/17275)。 |
+| userSig  | String                                    | 腾讯云设计的一种安全保护签名，获取方式请参考 [如何计算 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。 |
 | config   | TRTCLiveRoomConfig                        | 全局配置信息，请在登录时初始化，登录之后不可变更。<ul style="margin:0;"><li>useCDNFirst 属性：用于设置观众观看方式。true 表示普通观众通过 CDN 观看，计费便宜但延时较高。false 表示普通观众通过低延时观看，计费价格介于 CDN 和连麦之间，但延迟可控制在1s以内。</li><li>CDNPlayDomain 属性：在 useCDNFirst 设置为 true 时才会生效，用于指定 CDN 观看的播放域名，您可以登录直播控制台 >【<a href="https://console.cloud.tencent.com/live/domainmanage">域名管理</a>】页面中进行设置。</li></ul> |
 | callback | (_ code: Int, _ message: String?) -> Void | 登录回调，成功时 code 为0。                                  |
 
@@ -861,7 +861,7 @@ NS_SWIFT_NAME(setAudioiQuality(_:));
 
 ### getAudioEffectManager
 
-获取背景音乐音效管理对象 [TXAudioEffectManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TRTCCloud__ios.html#af962213fefe6988a08820ac9af00df66)。
+获取背景音乐音效管理对象 [TXAudioEffectManager](http://doc.qcloudtrtc.com/group__TRTCCloud__ios.html#af962213fefe6988a08820ac9af00df66)。
 
 ```objc
 /// 获取音效管理对象
@@ -872,7 +872,7 @@ NS_SWIFT_NAME(setAudioiQuality(_:));
 
 ### getBeautyManager
 
-获取美颜管理对象 [TXBeautyManager](https://liteav.sdk.qcloud.com/doc/api/zh-cn/group__TXBeautyManager__ios.html#interfaceTXBeautyManager)。
+获取美颜管理对象 [TXBeautyManager](http://doc.qcloudtrtc.com/group__TXBeautyManager__ios.html#interfaceTXBeautyManager)。
 
 ```objc
 /* 获取美颜管理对象 TXBeautyManager
