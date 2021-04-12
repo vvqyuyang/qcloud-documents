@@ -12,15 +12,14 @@
 
 [](id:mac_step1)
 #### 步骤1：下载 C++ 跨平台 SDK
-1. 下载 [SDK](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Mac_latest.tar.bz2)，解压并打开文件。
+1. 下载 [SDK](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_TRTC_Mac_latest.tar.bz2)，解压并打开文件。
 2. 在您的QTTest同级目录下新建一个空的SDK文件夹，将第1步下载的`TXLiteAVSDKTRTCMacx.x.x/SDK/TXLiteAVSDKTRTC_Mac.framework` 拷贝到与您 QTTest 工程目录同级目录的 SDK 文件夹下。
 
 [](id:mac_step2)
 #### 步骤2：配置 QTTest.pro
 打开 QTTest 工程目录，使用一任意文本编辑器打开 `QTTest.pro` 文件，然后添加 SDK 相关引用：
 
-<dx-codeblock>
-::: mac
+```
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
 
@@ -34,8 +33,7 @@ INCLUDEPATH += $$PWD/../SDK/TXLiteAVSDK_TRTC_Mac.framework/Headers/cpp_interface
 
 INCLUDEPATH += $$PWD/base/util/mac/usersig/include
 DEPENDPATH += $$PWD/base/util/mac/usersig/include
-:::
-</dx-codeblock>
+```
 
 [](id:mac_step3)
 #### 步骤3：授权摄像头和麦克风使用权限
@@ -46,7 +44,6 @@ NSMicrophoneUsageDescription : 申请使用麦克风
 NSCameraUsageDescription : 申请使用摄像头
 ```
 如下图所示：
-![](https://main.qcloudimg.com/raw/eac2455042c11db8ce3de49920fa18c1.png)
 
 [](id:mac_step4)
 #### 步骤4：引用 TRTC SDK
@@ -66,16 +63,14 @@ NSCameraUsageDescription : 申请使用摄像头
 
 [](id:win_step1)
 #### 步骤1：下载 C++ 跨平台 SDK
-1. 下载 [SDK](https://liteav.sdk.qcloud.com/download/latest/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开文件。
+1. 下载 [SDK](https://liteavsdk-1252463788.cosgz.myqcloud.com/TXLiteAVSDK_TRTC_Win_latest.zip)，解压并打开文件。
 2. 您的 QTTest 同级目录下新建一个空的SDK文件夹，将第1步下载的 `TXLiteAVSDKTRTCWin_latest/SDK/CPlusPlus` 拷贝到与您 QTTest 工程目录同级目录的 SDK 文件夹下。
 
 [](id:win_step2)
 #### 步骤2：配置 QTTest 工程依赖环境
-<dx-tabs>
-:::  场景一：使用QtCreator配置依赖环境
+##### 场景一：使用QtCreator配置依赖环境
 打开 QTTest工程目录，使用一款任意文本编辑器（推荐 [Sublime Text](http://www.sublimetext.com/3)）打开 `QTTest.pro`（使用 Qt Creator 创建）文件，然后添加 SDK 相关引用：
-<dx-codeblock>
-::: windows 
+```
 INCLUDEPATH += $$PWD/.
                $$PWD/../SDK/CPlusPlus/Win32/include \
                $$PWD/../SDK/CPlusPlus/Win32/include/TRTC
@@ -102,13 +97,9 @@ LIBS += -L$$PWD/../SDK/CPlusPlus/Win32/lib -lliteav
 LIBS += -L$$PWD/../SDK/CPlusPlus/Win64/lib -lliteav
 }
 }
-:::
-</dx-codeblock>
-:::
-::: 场景二：使用VS配置依赖环境
+```
+##### 场景二：使用VS配置依赖环境
 如果您的工程已经是一个成熟的 VS 项目，您也可以在 VS 中的工程属性 `Properties->Linker->Input 和 General` 配置 SDK 库路径依赖信息，同时在 `Properties -> C/C++ -> General` 设置好 SDK 的头文件路径依赖信息。
-:::
-</dx-tabs>
 
 [](id:win_step3)
 #### 步骤3：拷贝文件
