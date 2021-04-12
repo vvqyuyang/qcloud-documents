@@ -1,282 +1,408 @@
-## 支持的平台
 
-WebRTC 技术由 Google 最先提出，目前主要在桌面版 Chrome 浏览器、桌面版 Edge 浏览器、桌面版 Firefox 浏览器、桌面版 Safari 浏览器以及移动版 Safari 浏览器上有较为完整的支持，其他平台（例如 Android 平台的浏览器）支持情况均比较差。
-- 在移动端推荐使用 [小程序](https://cloud.tencent.com/document/product/647/17018) 解决方案，微信和手机 QQ 小程序均已支持，都是由各平台的 Native 技术实现，音视频性能更好，且针对主流手机品牌进行了定向适配。
-- 如果您的应用场景主要为教育场景，那么教师端推荐使用稳定性更好的 [Electron](https://cloud.tencent.com/document/product/647/38549) 解决方案，支持大小双路画面，更灵活的屏幕分享方案以及更强大的弱网络恢复能力。
+版本号`major.minor.patch`具体规则如下：
+  - major：主版本号，如有重大版本重构则该字段递增，通常各主版本间接口不兼容。
+  - minor：次版本号，各次版本号间接口保持兼容，如有接口新增或优化则该字段递增。
+  - patch：补丁号，如有功能改善或缺陷修复则该字段递增。
 
-<table>
-<tr>
-<th>操作系统</th>
-<th width="22%">浏览器类型</th><th>浏览器最低<br>版本要求</th><th width="16%">接收（播放）</th><th width="16%">发送（上麦）</th><th>屏幕分享</th><th>SDK 版本要求</th>
-</tr><tr>
-<td rowspan="4">Mac OS</td>
-<td>桌面版 Safari 浏览器</td>
-<td>11+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持（需要 Safari13+ 版本）</td>
-<td>-</td>
-</tr>
-<tr>
-<td>桌面版 Chrome 浏览器</td>
-<td>56+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持（需要 Chrome72+ 版本）</td>
-<td>-</td>
-</tr>
-<tr>
-<td>桌面版 Firefox 浏览器</td>
-<td>56+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持（需要 Firefox66+ 版本）</td>
-<td>v4.7.0+</td>
-</tr>
-<tr>
-<td>桌面版 Edge 浏览器</td>
-<td>80+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持</td>
-<td>v4.7.0+</td>
-</tr>
-<tr>
-<td  rowspan="4">Windows</td>
-<td>桌面版 Chrome 浏览器</td>
-<td>56+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持（需要 Chrome72+ 版本）</td>
-<td>-</td>
-</tr>
-<tr>
-<td>桌面版 QQ 浏览器（极速内核）</td>
-<td>10.4+</td>
-<td>支持</td>
-<td>支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td>桌面版 Firefox 浏览器</td>
-<td>56+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持（需要 Firefox66+ 版本）</td>
-<td>v4.7.0+</td>
-</tr>
-<tr>
-<td>桌面版 Edge 浏览器</td>
-<td>80+</td>
-<td>支持</td>
-<td>支持</td>
-<td>支持</td>
-<td>v4.7.0+</td>
-</tr>
-<tr>
-<td>iOS 11.1.2+</td>
-<td>移动版 Safari 浏览器</td>
-<td>11+</td>
-<td>支持</td>
-<td>支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td>iOS 12.1.4+</td>
-<td>微信内嵌网页</td>
-<td>-</td>
-<td>支持</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td>iOS 14.3+</td>
-<td>微信内嵌网页</td>
-<td>6.5+（微信版本）</td>
-<td>支持</td>
-<td>支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td  rowspan="4">Android</td>
-<td>移动版 QQ 浏览器</td>
-<td>-</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr><tr>
-<td>移动版 UC 浏览器</td>
-<td>-</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td>微信内嵌网页（TBS 内核）</td>
-<td>-</td>
-<td>支持</td>
-<td>支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-<tr>
-<td>微信内嵌网页（XWEB 内核）</td>
-<td>-</td>
-<td>支持</td>
-<td>支持</td>
-<td>不支持</td>
-<td>-</td>
-</tr>
-</table>
+>!
+> - 建议您及时更新至最新版本，以便获得更好的产品稳定性及在线支持。
+> - 版本升级注意事项请参见：[升级指引](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-00-info-update-guideline.html)。
 
-## API 使用指引
-详细的 API 使用介绍请参见以下指引：
+## Version 4.8.6 @ 2021.03.01
 
-| 功能                       | Sample Code 指引                                                                                                      |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| 基础音视频通话             | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-11-basic-video-call.html)                      |
-| 互动直播                   | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-12-basic-live-video.html)                            |
-| 切换摄像头和麦克风         | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-13-basic-switch-camera-mic.html)            |
-| 设置本地视频属性           | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-14-basic-set-video-profile.html)            |
-| 动态关闭打开本地音频或视频 | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-15-basic-dynamic-add-video.html)            |
-| 屏幕分享                   | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-16-basic-screencast.html)                   |
-| 音量大小检测               | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-17-basic-detect-volume.html)                |
-| 自定义采集与自定义播放渲染 | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-20-advanced-customized-capture-rendering.html) |
-| 房间内上行用户个数限制     | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-04-info-uplink-limits.html)                |
-| 背景音乐和音效实现方案     | [指引链接](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-22-advanced-audio-mixer.html)                  |
+**Improvement**
+
+支持拉流立体声播放。
+>! iOS 平台暂不支持。
+
+**Bug Fixed**
+
+修复移动端静音静画时，Web 收到 stream-removed 事件的问题。
+
+## Version 4.8.5 @ 2021.01.29
+
+**Improvement**
+
+- [Client.setTurnServer](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#setTurnServer) 支持设置多个 turn server。
+- 优化 userId 校验逻辑。
+
+**Bug Fixed**
+
+修复推流后，偶现 mute 状态不准确的问题。
+
+## Version 4.8.4 @ 2021.01.15
+
+**Improvement**
+
+- [LocalStream.setVideoProfile](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setVideoProfile) 接口支持动态调用。
+- 优化仪表盘数据上报逻辑。
+- 优化自动播放受限时的处理逻辑，请参见 [自动播放受限处理建议](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-21-advanced-auto-play-policy.html)。
+- 优化设备插拔自动恢复失败时的处理逻辑，请参见 [DEVICE_AUTO_RECOVER_FAILED](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/module-ErrorCode.html#.DEVICE_AUTO_RECOVER_FAILED)。
+
+**Bug Fixed**
+
+修复重新推流后，偶现 mute 状态不准的问题。
+
+## Version 4.8.3 @ 2021.01.07
+
+**Improvement**
+
+优化进房接口 roomId 参数校验逻辑。
+
+**Bug Fixed**
+
+- 修复 v4.8.2 版本缺少第三方依赖的问题。
+- 修复只订阅音频时，偶现播放无声的问题。
+- 修复 iOS 自动播放受限后，偶现 resume 无声及 getAudioLevel 为0的问题。
+
+## Version 4.8.2 @ 2020.12.31
+
+**Breaking Change**
+
+删除已废弃接口：setDefaultMuteRemoteStreams，请使用 [client.unsubscribe](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#unsubscribe) 接口替代。
+
+**Improvement**
+
+- 优化进房接口 roomId 参数校验逻辑，详情请参见 [接口文档](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#join) 及 [升级指引](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-00-info-update-guideline.html)。
+- 优化 peer-join 及 peer-leave 事件通知时机。
+
+**Bug Fixed**
+
+修复退房时，偶现报错 `Cannot read property 'isConnected' of null` 的问题。
 
 
-## TRTC
+## Version 4.8.1 @ 2020.12.25
 
->!本文适用于4.x.x版本的 TRTC 桌面浏览器 SDK。
+**Bug Fixed**
 
-TRTC 是 [TRTC 桌面浏览器 SDK](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/index.html) 的主入口，通过 TRTC 方法可以创建一个实时音视频通信的客户端对象（Client）和本地音视频流对象（Stream）。TRTC 方法还可以检测浏览器的兼容性，是否支持屏幕分享，以及设置日志级别及日志上传。
+- 修复 Windows 偶现听不到远端用户声音的问题。
+- 修复 client.getRemoteVideoStats() 接口返回空数据的问题。
 
-| API                                                                                                              | 描述                                                                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [VERSION](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.VERSION)                                 | TRTC 桌面浏览器 SDK 版本号。                                                                                                                                  |
-| [checkSystemRequirements](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.checkSystemRequirements) | 检测浏览器是否兼容 TRTC 桌面浏览器 SDK。若当前浏览器不兼容 TRTC 桌面浏览器 SDK，建议引导用户去下载最新版本的 Chrome 浏览器。                                  |
-| [isScreenShareSupported](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.isScreenShareSupported)   | 检测浏览器是否支持屏幕分享。在创建屏幕分享流之前请调用该方法检查当前浏览器是否支持屏幕分享。                                                                  |
-| [getDevices](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.getDevices)                           | 返回媒体输入输出设备列表。                                                                                                                                    |
-| [getCameras](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.getCameras)                           | 返回摄像头设备列表。                                                                                                                                          |
-| [getMicrophones](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.getMicrophones)                   | 返回麦克风设备列表。                                                                                                                                          |
-| [getSpeakers](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.getSpeakers)                         | 返回扬声器设备列表。                                                                                                                                          |
-| [createClient](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.createClient)                       | 创建一个实时音视频通话的客户端对象，在每次会话中仅需要调用一次。                                                                                              |
-| [createStream](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.createStream)                       | 创建一个本地流 Stream 对象，本地流 Stream 对象通过 [publish()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#publish) 方法发布本地音视频流。 |
+## Version 4.8.0 @ 2020.12.18
 
-## TRTC.Logger
+**Feature**
 
-提供日志设置方法，包括设置 [日志输出等级](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.Logger.html#.LogLevel)、打开或关闭日志上传。
+- 支持云端混流转码。
+- 全平台支持字符串房间号，参考：[TRTC.createClient 的 userDefineRecordId 参数](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.createClient)。
 
-| API                                                                                                       | 描述               |
-| --------------------------------------------------------------------------------------------------------- | ------------------ |
-| [setLogLevel](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.Logger.html#.setLogLevel)           | 设置日志输出等级。 |
-| [enableUploadLog](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.Logger.html#.enableUploadLog)   | 打开日志上传。     |
-| [disableUploadLog](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.Logger.html#.disableUploadLog) | 关闭日志上传。     |
+**Improvement**
 
-## Client
+- 优化 h264 支持度检测逻辑。
+- 优化设备切换逻辑。
+- 优化 hasAudio/hasVideo 接口的状态判断逻辑。
 
-音视频通话客户端对象 Client 通过 [createClient()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.createClient) 创建，代表一次音视频会话。
+**Bug Fixed**
 
-| API                                                                                                       | 描述                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [setProxyServer](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#setProxyServer)           | 设置代理服务器。该方法适用于企业自己部署代理服务器，如 nginx+coturn 方案。                                                                                                      |
-| [setTurnServer](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#setTurnServer)             | 设置 TURN 服务器。该方法配合 [setProxyServer()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#setProxyServer) 使用，适用于企业自己部署代理服务器和 TURN 中转。 |
-| [join](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#join)                               | 加入一个音视频通话房间，进房代表开始一个音视频通话会话。若房间不存在，系统将自动创建一个新房间。                                                                                |
-| [leave](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#leave)                             | 退出当前音视频通话房间，结束一次音视频通话会话。                                                                                                                                |
-| [publish](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#publish)                         | 发布本地音视频流。该方法需要在 [join()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#join) 进房后调用，一次音视频会话中只能发布一个本地流。                   |
-| [unpublish](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#unpublish)                     | 取消发布本地流。                                                                                                                                                                |
-| [subscribe](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#subscribe)                     | 订阅远端流。                                                                                                                                                                    |
-| [unsubscribe](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#unsubscribe)                 | 取消订阅远端流。                                                                                                                                                                |
-| [switchRole](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#switchRole)                   | 切换用户角色，仅在 ‘live’ 互动直播模式下生效。                                                                                                                                  |
-| [on](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#on)                                   | 监听客户端对象事件。                                                                                                                                                            |
-| [getRemoteMutedState](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#getRemoteMutedState) | 获取当前房间内远端用户音视频 mute 状态列表。                                                                                                                                    |
-| [getLocalAudioStats](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#getLocalAudioStats)   | 获取当前已发布本地流的音频统计数据。该方法需要在 [publish()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#publish) 后调用。                                   |
-| [getLocalVideoStats](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#getLocalVideoStats)   | 获取当前已发布本地流的视频统计数据。该方法需要在 [publish()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#publish) 后调用。                                   |
-| [getRemoteAudioStats](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#getRemoteAudioStats) | 获取当前所有远端流的音频统计数据。                                                                                                                                              |
-| [getRemoteVideoStats](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html#getRemoteVideoStats) | 获取当前所有远端流的视频统计数据。                                                                                                                                              |
+- 修复断网重连偶现失败报错的问题。
+- 修复 iOS Safari 频繁 add/remove track 黑屏问题。
 
-## LocalStream
+## Version 4.7.1 @ 2020.11.27
 
-LocalStream 本地音视频流，通过 [createStream](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.createStream) 创建，是 [Stream](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Stream.html) 的子类。
+**Improvement**
 
-| API                                                                                                            | 描述                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [initialize](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#initialize)                   | 初始化本地音视频流对象。                                                                                                                                                                 |
-| [setAudioProfile](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setAudioProfile)         | 设置音频 Profile。该方法需要在调用 [initialize()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#initialize) 之前调用。                                             |
-| [setVideoProfile](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setVideoProfile)         | 设置视频 Profile。该方法需要在调用 [initialize()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#initialize) 之前调用。                                             |
-| [setScreenProfile](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setScreenProfile)       | 设置屏幕分享 Profile。该方法需要在调用 [initialize()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#initialize) 之前调用。                                         |
-| [setVideoContentHint](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setVideoContentHint) | 设置视频内容提示，主要用于提升在不同场景下的视频编码质量。该方法需要在调用 [initialize()](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#initialize) 成功之后调用。 |
-| [switchDevice](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#switchDevice)               | 切换媒体输入设备。                                                                                                                                                                       |
-| [addTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#addTrack)                       | 添加音频或视频轨道。                                                                                                                                                                     |
-| [removeTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#removeTrack)                 | 移除视频轨道。                                                                                                                                                                           |
-| [replaceTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#replaceTrack)               | 更换音频或视频轨道。                                                                                                                                                                     |
-| [play](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#play)                               | 播放该音视频流。                                                                                                                                                                         |
-| [stop](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#stop)                               | 停止播放音视频流。                                                                                                                                                                       |
-| [resume](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#resume)                           | 恢复播放音视频。                                                                                                                                                                         |
-| [close](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#close)                             | 关闭音视频流。                                                                                                                                                                           |
-| [muteAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#muteAudio)                     | 禁用音频轨道。                                                                                                                                                                           |
-| [muteVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#muteVideo)                     | 禁用视频轨道。                                                                                                                                                                           |
-| [unmuteAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#unmuteAudio)                 | 启用音频轨道。                                                                                                                                                                           |
-| [unmuteVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#unmuteVideo)                 | 启用视频轨道。                                                                                                                                                                           |
-| [getId](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getId)                             | 获取 Stream 唯一标识 ID。                                                                                                                                                                |
-| [getUserId](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getUserId)                     | 获取该流所属的用户 ID。                                                                                                                                                                  |
-| [setAudioOutput](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#setAudioOutput)           | 设置声音输出设备。                                                                                                                                                                       |
-| [getAudioLevel](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getAudioLevel)             | 获取当前音量大小。只有当本地流或远端流中有音频数据才有效。                                                                                                                               |
-| [hasAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#hasAudio)                       | 是否包含音频轨道。                                                                                                                                                                       |
-| [hasVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#hasVideo)                       | 是否包含视频轨道。                                                                                                                                                                       |
-| [getAudioTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getAudioTrack)             | 获取音频轨道。                                                                                                                                                                           |
-| [getVideoTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getVideoTrack)             | 获取视频轨道。                                                                                                                                                                           |
-| [getVideoFrame](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#getVideoFrame)             | 获取当前视频帧。                                                                                                                                                                         |
-| [on](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/LocalStream.html#on)                                   | 监听 Stream 事件。                                                                                                                                                                       |
+- 优化媒体设备变更时（例如：接口松动、设备插拔等）的自动恢复采集逻辑。
+- 新增错误码：[DEVICE_AUTO_RECOVER_FAILED](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/module-ErrorCode.html#.DEVICE_AUTO_RECOVER_FAILED)，可用于设备恢复失败时进行提示。
+
+**Bug Fixed**
+
+- 修复 Chrome/87 版本偶现报错黑屏的问题。
+- 修复 Native 推摄像头 + 屏幕分享，Web 重复订阅、取消订阅，屏幕分享流消失的问题。
+
+## Version 4.7.0 @ 2020.11.20
+
+**Feature**
+
+支持桌面端 Firefox M56+ 及桌面端 Edge M80+。
+
+**Breaking Change**
+
+[TRTC.checkSystemRequirements](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.checkSystemRequirements) 返回详细检测结果，具体请参见 [接口文档](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.checkSystemRequirements) 及 [升级指引](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-00-info-update-guideline.html)。
+
+**Improvement**
+
+- 优化上行码率控制逻辑。
+- 优化获取媒体设备重试逻辑。
+- 优化 Websocket 重连逻辑。
+- 优化设备变更时的自动恢复推流逻辑，支持混音状态下插拔麦克风自动恢复推流。
 
 
+## Version 4.6.7 @ 2020.11.05
 
-## RemoteStream
+**Bug Fixed**
 
-远端音视频流，通过监听 [Client.on('stream-added')](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/module-Event.html#.STREAM_ADDED) 事件获得。是 [Stream]() 的子类。
+- 修复 Chrome 开启硬件加速时，拉流观看偶现花屏的问题。
+- 修复 iOS 微信内置浏览器无法进房拉流的问题。
 
-| API                                                                                                   | 描述                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [getType](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getType)               | 获取远端流类型。主要用于判断一个远端流是主音视频流还是辅路视频流，辅路视频流通常是一个屏幕分享流。 |
-| [play](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#play)                     | 播放该音视频流。                                                                                   |
-| [stop](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#stop)                     | 停止播放音视频流。                                                                                 |
-| [resume](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#resume)                 | 恢复播放音视频。                                                                                   |
-| [close](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#close)                   | 关闭音视频流。                                                                                     |
-| [muteAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#muteAudio)           | 禁用音频轨道。                                                                                     |
-| [muteVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#muteVideo)           | 禁用视频轨道。                                                                                     |
-| [unmuteAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#unmuteAudio)       | 启用音频轨道。                                                                                     |
-| [unmuteVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#unmuteVideo)       | 启用视频轨道。                                                                                     |
-| [getId](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getId)                   | 获取 Stream 唯一标识 ID。                                                                          |
-| [getUserId](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getUserId)           | 获取该流所属的用户 ID。                                                                            |
-| [setAudioOutput](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#setAudioOutput) | 设置声音输出设备。                                                                                 |
-| [setAudioVolume](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#setAudioVolume) | 设置播放音量大小。                                                                                 |
-| [getAudioLevel](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getAudioLevel)   | 获取当前音量大小。只有当本地流或远端流中有音频数据才有效。                                         |
-| [hasAudio](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#hasAudio)             | 是否包含音频轨道。                                                                                 |
-| [hasVideo](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#hasVideo)             | 是否包含视频轨道。                                                                                 |
-| [getAudioTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getAudioTrack)   | 获取音频轨道。                                                                                     |
-| [getVideoTrack](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getVideoTrack)   | 获取视频轨道。                                                                                     |
-| [getVideoFrame](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#getVideoFrame)   | 获取当前视频帧。                                                                                   |
-| [on](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RemoteStream.html#on)                         | 监听 Stream 事件。                                                                                 |
+## Version 4.6.6 @ 2020.10.23
 
+**Improvement**
 
-## RtcError
+- 优化上行 peerConnection 重连逻辑。
+- 优化下行 peerConnection 重连逻辑。
+- 优化 TRTC.checkSystemRequirements 检测逻辑。
+- 支持 Safari 屏幕分享，具体请参见 [屏幕分享使用教程](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/tutorial-16-basic-screencast.html)。
 
-RtcError 错误对象。
+**Bug Fixed**
 
-| API                                                                                 | 描述         |
-| ----------------------------------------------------------------------------------- | ------------ |
-| [getCode](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/RtcError.html#getCode) | 获取错误码。 |
+修复因自动播放策略限制，手动恢复音频播放后，getAudioLevel 值为0的问题。
 
+## Version 4.6.5 @ 2020.10.14
 
+**Improvement**
 
-## 联系我们
+- 优化 WebSocket 信令通道重连逻辑，提升连接稳定性。
+- 优化日志输出逻辑。
 
-关注公众号“腾讯云视频”，给公众号发关键字“技术支持”，会有专人联系。
-![](https://main.qcloudimg.com/raw/30ad559e5f1f35dccc56149208aba552.jpg)
+**Bug Fixed**
+
+- 修复 Chrome 重新订阅后，getAudioLevel 接口返回值为0的问题。
+- 修复 Safari 重新订阅后，播放无声的问题。
+- 修复使用 replaceTrack 替换上行音频轨道后，getLocalVideoStats 接口返回 undefined 的问题。
+- 修复移动设备通话过程中，切换网络类型，偶现 WebSocket 连接断开的问题。
+
+## Version 4.6.4 @ 2020.09.24
+
+**Improvement**
+
+退房后停止网络质量统计。
+
+**Bug Fixed**
+
+- 修复 Chrome 56 进房报错的问题。
+- 修复移动端推旁路出现画面旋转的问题。
+- 修复纯音频推流时云端录制异常的问题。
+- 修复因分辨率不一致导致摄像头拔出后，自动恢复推流失败的问题。
+
+## Version 4.6.3 @ 2020.08.28
+
+**Improvement**
+
+- 优化兼容性检测逻辑。
+- 优化日志上报逻辑。
+- 优化上行码率控制逻辑。
+
+## Version 4.6.2 @ 2020.08.14
+
+**Improvement**
+
+- 优化上行码率调控逻辑。
+- 优化 switchRole 参数校验逻辑。
+- 优化上行网络质量计算逻辑。
+- 优化错误提示信息。
+- 检测当前推流采集设备变更时，自动恢复推流状态。
+
+**Bug Fixes**
+
+修复 unpublish 成功后，立即重新 publish 失败报错的问题。
+
+## Version 4.6.1 @ 2020.07.28
+
+**Improvement**
+
+- [TRTC.isScreenShareSupported](https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/TRTC.html#.isScreenShareSupported) Safari 不支持屏幕分享。
+- 完善 subscribe & unsubscribe 接口的参数校验逻辑。
+- 增加网络质量日志。
+
+**Bug Fixes**
+
+- 修复当未授权媒体设备，且 TRTC.createStream 接口传入的设备 ID 为空串时，SDK 报 OverconstrainedError 的问题。
+- 修复上行 peerConnection 断开时没有打印日志的问题。
+
+## Version 4.6.0 @ 2020.07.16
+
+**Feature**
+
+增加 NETWORK_QUALITY 事件。
+
+## Version 4.5.0 @ 2020.07.02
+
+**Feature**
+
+createStream 接口增加 screenAudio 参数。
+
+**Bug Fixes**
+
+- 修复 Android 浏览器中回声消除不起作用的问题。
+- 修复 getTransportStats 接口返回的 rtt 值为 NAN 的问题。
+
+## Version 4.4.0 @ 2020.05.28
+
+**Feature**
+
+支持 Chrome >= 74 屏幕分享采集系统（Windows）或者当前 Tab 页面（Mac）的声音。
+
+## Version 4.3.13 @ 2020.04.16
+
+**Improvement**
+
+优化可用性检测逻辑。
+
+## Version 4.3.12 @ 2020.04.13
+
+**Bug Fixes**
+
+修复一个潜在的 RTCPeerConnection 状态变化异常。
+
+## Version 4.3.11 @ 2020.03.28
+
+**Improvement**
+
+增加手机 QQ 浏览器检测，手机 QQ 浏览器暂时无法支持 TRTC 桌面浏览器 SDK。
+
+**Bug Fixes**
+
+修复 Boolean 返回值类型。
+
+## Version 4.3.10 @ 2020.03.17
+
+**Improvement**
+
+- 优化环境检测逻辑。
+- RtcError 增加 name code。
+
+## Version 4.3.9 @ 2020.03.13
+
+**Improvement**
+
+- 增加部署环境自动检测。
+- 优化日志。
+
+## Version 4.3.8 @ 2020.02.24
+
+**Improvement**
+
+createClient 增加 streamId userdefinerecordid 字段。
+
+## Version 4.3.7 @ 2020.02.21
+
+**Improvement**
+
+屏幕分享时切换设备抛出异常。
+
+**Bug Fixes**
+
+- 切换设备时释放 MediaStream，解决设备占用问题。
+- 订阅接口增加处理潜在错误。
+
+## Version 4.3.6 @ 2020.02.05
+
+**Bug Fixes**
+
+调整 Stream.resume() 音视频播放顺序，修复 iOS 上微信浏览器自动播放异常问题
+
+## Version 4.3.5 @ 2020.02.05
+
+**Improvement**
+
+增加 publish 超时检查，提高信令发送成功率
+
+## Version 4.3.4 @ 2020.01-06
+
+**Improvement**
+
+升级 core-js 至 v3.6.1。
+
+**Bug Fixes**
+
+- unpublish 超时后向外部抛出异常事件。
+- 修复第三方库引起 V8 负优化问题。
+
+## Version 4.3.3  @ 2019.12.25
+
+**Improvement**
+
+- 增加主动检测环境是否支持 webrtc 能力
+- 优化 sdp 响应机制
+- 优化上报逻辑
+
+**Bug Fixes**
+
+修复 turn URL 协议格式
+
+## Version 4.3.2 @ 2019.12.09
+
+**Improvement**
+
+- 增加下行连接 ICE 断开自动重连机制。
+- 去除 STUN 打洞环节，增加内网用户连接成功率及提高连接速度。
+- 日志上报时间戳统一使用服务器校正后的 UTC 时间。
+- 优化 ICE 错误上报。
+- 增加更多关键事件上报到 avmonitor 监控。
+
+**Bug Fixes**
+
+- 修复 WebSocket 信令通道1005异常重连及重连错误处理。
+- 修复下行丢包率上报问题。
+
+## Version 4.3.1 @ 2019.11.23
+
+**Improvement**
+
+增加通话过程中上行链路 ICE 断开自动重连机制。
+
+**Bug Fixes**
+
+修复 STUN 打洞失败后 host 公网 IP 类型 ICE Candidate 不生效问题。
+
+## Version 4.3.0 @ 2019.11.15
+
+**Feature**
+
+增加 Client.getTransportStats() API。
+
+**Improvement**
+
+- 增加更详细的上报日志。
+- 事件解除绑定支持通配符。
+- 增加连接超时时间至5s。
+- 增加发布超时时间至5s。
+
+**Bug Fixes**
+
+修复因 zone.js 修改原型链导致 SDK 判断异常的问题。
+
+## Version 4.2.0 @ 2019.11.04
+
+**Feature**
+
+增加 Client.off() 接口取消客户端事件绑定。
+
+**Improvement**
+
+- 通话状态统计优化。
+- Client.publish() 增加权限检查。
+- Stream.play()/resume() 增加自动播放错误提示。
+
+**Bug Fixes**
+
+LocalStream.switchDevice() 切换摄像头黑屏问题修复。
+
+## Version 4.1.1 @ 2019.10.24
+
+**Bug Fixes**
+
+- 修复日志丢失问题。
+- 修复断网重连远端用户丢失问题。
+
+## Version 4.1.0 @ 2019.10.17
+
+**Feature**
+
+- Stream.play() 接口支持传入 HTMLDivElement 对象。
+- 增加音频码率调控设置，开发者可通过 LocalStream.setAudioProfile() 设置音频属性，目前支持两种 Profile：standard 和 high。
+
+**Bug Fixes**
+
+- 修复旧版本 Chrome 上的 WebAudio Context 数量受限问题。
+- 修复 replaceTrack() 未重启本地音视频播放器问题。
+- 修复 LocalStream.setScreenProfile() 自定义属性设置未生效问题。
+- 修复 audio/video player 重启及状态上报问题。
+
+## Version 4.0.0 @ 2019.10.11
+
+TRTC 桌面浏览器 SDK 重构版本，提供 Client/Stream 模式的接口，各对象职责更明确，语义更简洁明了。
+重构版本与旧版本不兼容，除接口改动之外，还提供如下功能：
+
+- 视频属性 （分辨率、帧率及码率）控制完全由 App 通过 SDK 的 LocalStream.setVideoProfile() 接口设置，不再支持老版本通过腾讯云控制台的“画面设定 （Spear Role）”。
+- SDK 在 Stream 对象中封装了音视频播放器，音视频播放完全由 SDK 控制。
+- 提供远端流的订阅与取消订阅功能，开发者可以通过 Client.subscribe()/unsubscribe() 接口灵活控制远端流的音频、视频或音视频数据流的接收。
