@@ -1,15 +1,5 @@
 ## 效果展示
-您可以 [下载](https://cloud.tencent.com/document/product/647/17021) 安装我们的 Demo 体验多人视频会议的效果，包括屏幕分享、美颜、低延时会议等 TRTC 在多人视频会议场景下的相关能力。
-<table>
-     <tr>
-         <th>进入会议</th>  
-         <th>屏幕分享</th>  
-     </tr>
-<tr>
-<td><img src="https://liteav-test-1252463788.cos.ap-guangzhou.myqcloud.com/gif/enterroom.gif"/></td>
-<td><img src="https://liteav-test-1252463788.cos.ap-guangzhou.myqcloud.com/gif/screencapture.gif"/></td>
-</tr>
-</table>
+您可以 [下载](https://intl.cloud.tencent.com/document/product/647/35076) 安装我们的 Demo 体验多人视频会议的效果，包括屏幕分享、美颜、低延时会议等 TRTC 在多人视频会议场景下的相关能力。
 
 如需快速接入多人视频会议功能，您可以直接基于我们提供的 Demo 进行修改适配，也可以使用我们提供的 TRTCMeeting 组件并实现自定义 UI 界面。
 
@@ -20,7 +10,7 @@
 1. 登录实时音视频控制台，选择【开发辅助】>【[快速跑通Demo](https://console.cloud.tencent.com/trtc/quickstart)】。
 2. 输入应用名称，例如  TestMeetingRoom ，单击【创建】。
 
->! 本功能同时使用了腾讯云 [实时音视频 TRTC](https://cloud.tencent.com/document/product/647/16788) 和 [即时通信 IM](https://cloud.tencent.com/document/product/269) 两个基础 PaaS 服务，开通实时音视频后会同步开通即时通信 IM 服务。 即时通信 IM 属于增值服务，详细计费规则请参见 [即时通信 IM 价格说明](https://cloud.tencent.com/document/product/269/11673)。
+>! 本功能同时使用了腾讯云 [实时音视频 TRTC](https://intl.cloud.tencent.com/document/product/647/35078) 和 [即时通信 IM](https://intl.cloud.tencent.com/document/product/1047) 两个基础 PaaS 服务，开通实时音视频后会同步开通即时通信 IM 服务。 即时通信 IM 属于增值服务，详细计费规则请参见 [即时通信 IM 价格说明](https://intl.cloud.tencent.com/document/product/1047/34350)。
 
 
 
@@ -28,7 +18,6 @@
 ### 步骤2：下载 SDK 和 Demo 源码
 1. 根据实际业务需求下载 SDK 及配套的 Demo 源码。
 2. 下载完成后，单击【已下载，下一步】。
-![](https://main.qcloudimg.com/raw/3b115019ddfd0866108ed1add30810d8.png)
 
 [](id:ui.step3)
 ### 步骤3：配置 Demo 工程文件
@@ -37,13 +26,14 @@
 3.设置 `GenerateTestUserSig.java` 文件中的相关参数：
 <ul style="margin:0"><li/>SDKAPPID：默认为0，请设置为实际的 SDKAppID。
 <li/>SECRETKEY：默认为空字符串，请设置为实际的密钥信息。</ul>
-<img src="https://main.qcloudimg.com/raw/6b073eabf0d3ddf92f32199e13a1608c.png">
+<img src="https://main.qcloudimg.com/raw/87dc814a675692e76145d76aab91b414.png">
+
 4. 粘贴完成后，单击【已复制粘贴，下一步】即创建成功。
 5. 编译完成后，单击【回到控制台概览】即可。
 
 
 >!本文提到的生成 UserSig 的方案是在客户端代码中配置 SECRETKEY，该方法中 SECRETKEY 很容易被反编译逆向破解，一旦您的密钥泄露，攻击者就可以盗用您的腾讯云流量，因此**该方法仅适合本地跑通 Demo 和功能调试**。
->正确的 UserSig 签发方式是将 UserSig 的计算代码集成到您的服务端，并提供面向 App 的接口，在需要 UserSig 时由您的 App 向业务服务器发起请求获取动态 UserSig。更多详情请参见 [服务端生成 UserSig](https://cloud.tencent.com/document/product/647/17275#Server)。
+>正确的 UserSig 签发方式是将 UserSig 的计算代码集成到您的服务端，并提供面向 App 的接口，在需要 UserSig 时由您的 App 向业务服务器发起请求获取动态 UserSig。更多详情请参见 [服务端生成 UserSig](https://intl.cloud.tencent.com/document/product/647/35166)。
 
 [](id:ui.step4)
 ### 步骤4：运行 Demo
@@ -67,7 +57,7 @@
 ## 实现自定义 UI 界面
 
 [源码](https://github.com/tencentyun/TRTCSDK/tree/master/Android/TRTCScenesDemo/trtcmeetingdemo/src/main/java/com/tencent/liteav/meeting) 中的 trtcmeetingdemo 文件夹包含两个子文件夹 ui 和 model，model 文件夹中包含可重用的开源组件 TRTCMeeting，您可以在`TRTCMeeting.java` 文件中看到该组件提供的接口函数，并使用对应接口实现自定义 UI 界面。
-![](https://main.qcloudimg.com/raw/bee48f1b790fd81a60f73d07fdb5ecc5.png)
+![](https://main.qcloudimg.com/raw/2ac6fe9df1b43dae59271f4288f54ef3.png)
 
 [](id:model.step1)
 ### 步骤1：集成 SDK
@@ -103,13 +93,13 @@ defaultConfig {
 </tr>
 <tr>
 <td>TRTC SDK</td>
-<td><a href="https://cloud.tencent.com/document/product/647/32689">DOWNLOAD</a></td>
-<td><a href="https://cloud.tencent.com/document/product/647/32175">集成文档</a></td>
+<td><a href="https://intl.cloud.tencent.com/document/product/647/34615">DOWNLOAD</a></td>
+<td><a href="https://intl.cloud.tencent.com/document/product/647/35093">集成文档</a></td>
 </tr>
 <tr>
 <td>IM SDK</td>
-<td><a href="https://cloud.tencent.com/document/product/269/36887">DOWNLOAD</a></td>
-<td><a href="https://cloud.tencent.com/document/product/269/32679">集成文档</a></td>
+<td><a href="https://intl.cloud.tencent.com/document/product/1047/33996">DOWNLOAD</a></td>
+<td><a href="https://intl.cloud.tencent.com/document/product/1047/34306">集成文档</a></td>
 </tr>
 </table>
 
@@ -143,7 +133,7 @@ defaultConfig {
 src/main/java/com/tencent/liteav/meeting/model
 ```
 
-[](id:model.step4)
+<span id="model.step4"></span>
 ### 步骤4：创建并登录组件
 1. 调用`sharedInstance`接口可以创建一个 TRTCMeeting 组件的实例对象。
 2. 调用`setDelegate`函数注册组件的事件通知。
@@ -163,7 +153,7 @@ src/main/java/com/tencent/liteav/meeting/model
 </tr>
 <tr>
 <td>userSig</td>
-<td>腾讯云设计的一种安全保护签名，获取方式请参考 <a href="https://cloud.tencent.com/document/product/647/17275">如何计算 UserSig</a>。</td>
+<td>腾讯云设计的一种安全保护签名，获取方式请参考 <a href="https://intl.cloud.tencent.com/document/product/647/35166">如何计算 UserSig</a>。</td>
 </tr>
 <tr>
 <td>callback</td>
@@ -171,7 +161,7 @@ src/main/java/com/tencent/liteav/meeting/model
 </tr>
 </table>
 <dx-codeblock>
-::: java java
+```
 TRTCMeeting trtcMeeting = TRTCMeeting.sharedInstance(this);
 trtcMeeting.login(SDKAPPID, userId, userSig, new TRTCMeetingCallback.ActionCallback() {
     @Override
@@ -181,8 +171,7 @@ trtcMeeting.login(SDKAPPID, userId, userSig, new TRTCMeetingCallback.ActionCallb
         }
     }
 });
-:::
-</dx-codeblock>
+```
 
 [](id:model.step5)
 ### 步骤5：创建多人会议
@@ -192,11 +181,10 @@ trtcMeeting.login(SDKAPPID, userId, userSig, new TRTCMeetingCallback.ActionCallb
 4. 如果主持人有美颜的需求，界面上可以配置美颜调节按钮调用，通过`getBeautyManager`进行美颜设置。
 >?非企业版 SDK 不支持变脸和贴图挂件功能。
 >
-![](https://main.qcloudimg.com/raw/6e0cf097f46a8953cbebcf9995ba28c1.png)
+![](https://main.qcloudimg.com/raw/416a1afd87b196a6ef791bf63eeaa5e0.png)
 
 
-<dx-codeblock>
-::: java java
+```
 // 1.主持人设置昵称和头像
 trtcMeeting.setSelfProfile("my_name", "my_avatar", null);
 
@@ -216,20 +204,18 @@ trtcMeeting.createMeeting(roomId, new TRTCMeetingCallback.ActionCallback() {
         }
     }
 });
-:::
-</dx-codeblock>
+```
 
-[](id:model.step6)
+<span id="model.step6"></span>
 ### 步骤6：参会成员进入多人会议
 1. 参会成员执行 [步骤4](#model.step4) 登录后，可以调用`setSelfProfile`设置自己的昵称和头像。
 2. 参会成员调用`enterMeeting`并传入会议房间号即可进入会议房间。
 3. 参会成员可以调用`startCameraPreview`进行视频画面的采集，调用`startMicrophone`进行声音的采集。
 4. 如果有其他的参会成员打开了摄像头，会收到`onUserVideoAvailable`的事件，此时可以调用`startRemoteView`并传入 userId 开始播放。
 
-![](https://main.qcloudimg.com/raw/d8b796bbe41c9da1af40740916e84d70.png)
+![](https://main.qcloudimg.com/raw/f33213dea7a32ca9904c066952fcc535.png)
 
-<dx-codeblock>
-::: java java
+```
 // 1.参会成员设置昵称和头像
 trtcMeeting.setSelfProfile("my_name", "my_avatar", null);
 
@@ -262,8 +248,7 @@ trtcMeeting.setDelegate(new TRTCMeetingDelegate() {
         }
     }
 });
-:::
-</dx-codeblock>
+```
 
 [](id:model.step7)
 ### 步骤7：屏幕分享
@@ -273,8 +258,7 @@ trtcMeeting.setDelegate(new TRTCMeetingDelegate() {
 3. 会议中其他成员会收到 `onUserVideoAvailable` 的事件通知。
 >! 幕分享和摄像头采集是两个互斥的操作，如果需要打开屏幕分享功能，请先调用`stopCameraPreview`关闭摄像头采集。
 
-<dx-codeblock>
-::: java java
+```
 // 1.在 AndroidManifest.xml 文件中添加 SDK 录屏功能的 activity 和权限
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 <application>
@@ -320,15 +304,13 @@ private void startScreenCapture() {
         mTRTCMeeting.stopCameraPreview();
         mTRTCMeeting.startScreenCapture(encParams, params);
 }
-:::
-</dx-codeblock>
+```
 
 [](id:model.step8)
 ### 步骤8：实现文字聊天和禁言消息
 - 通过`sendRoomTextMsg`可以发送普通的文本消息，所有在该房间内的主播和观众均可以收到`onRecvRoomTextMsg`回调。
  即时通信 IM 后台有默认的敏感词过滤规则，被判定为敏感词的文本消息不会被云端转发。
-<dx-codeblock>
-::: java java
+```
 // 发送端：发送文本消息
 trtcMeeting.sendRoomTextMsg("Hello Word!", null);
 // 接收端：监听文本消息
@@ -339,12 +321,10 @@ trtcMeeting.setDelegate(new TRTCMeetingDelegate() {
         Log.d(TAG, "收到来自" + userInfo.userName + "的消息:" + message);
     }
 });
-:::
-</dx-codeblock>
+```
 - 通过`sendRoomCustomMsg`可以发送自定义（信令）的消息，所有在该房间内的主持人和与会观众均可以收到`onRecvRoomCustomMsg`回调。
 自定义消息常用于传输自定义信令，例如用于禁言之类的会场控制等。
-<dx-codeblock>
-::: java java
+```
 // 发送端：您可以通过自定义 Cmd 来区分禁言通知
 // eg:"CMD_MUTE_AUDIO"表示禁言通知
 trtcMeeting.sendRoomCustomMsg("CMD_MUTE_AUDIO", "1", null);
@@ -360,5 +340,4 @@ trtcMeeting.setDelegate(new TRTCMeetingDelegate() {
         }
     }
 });
-:::
-</dx-codeblock>
+```
